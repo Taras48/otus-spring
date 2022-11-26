@@ -1,0 +1,29 @@
+/target/
+.mvn/
+.openapi-generator*
+.gradle
+/.gradle/
+/buildSrc/.gradle
+/buildSrc/build
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+/.idea/
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Project exclude paths
+**/build/
+/build/
+/build/classes/kotlin/main/
+/build/classes/kotlin/test/
