@@ -1,0 +1,3 @@
+id,questionText,answers
+1,questionText1,"1|answer11|true,2|answer12|false"
+2,questionText2,"3|answer21|false,4|answer22|true"

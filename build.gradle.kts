@@ -18,8 +18,7 @@ dependencies {
     implementation("org.springframework:spring-context:5.3.24")
 
     // Other
-    implementation("org.apache.commons:commons-csv:1.9.0")
-
+    implementation("com.opencsv:opencsv:5.7.1")
 
     //Test
     testImplementation(kotlin("test"))
