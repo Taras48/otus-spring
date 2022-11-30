@@ -1,6 +1,5 @@
 package ru.otus.spring
 
-import com.sun.tools.javac.Main
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -8,9 +7,7 @@ import org.springframework.context.annotation.PropertySource
 import ru.otus.spring.Service.StudentService
 
 @Configuration
-@ComponentScan("ru.otus.spring")
-//@ComponentScan(basePackages = arrayOf("ru.otus.spring"))
-@PropertySource("classpath:application.properties")
+@ComponentScan(basePackages = ["ru.otus.spring"])
 class Main
 
 fun main(args: Array<String>) {
