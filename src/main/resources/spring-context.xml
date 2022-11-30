@@ -4,12 +4,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean
-            id="questionService"
-            class="ru.otus.spring.Service.QuestionServiceImpl">
-        <constructor-arg
-                type="org.springframework.core.io.Resource"
-                value="questions.csv"
-        />
-    </bean>
+<!--    <bean-->
+<!--            id="questionService"-->
+<!--            class="ru.otus.spring.Service.QuestionServiceImpl">-->
+<!--        <constructor-arg-->
+<!--                type="org.springframework.core.io.Resource"-->
+<!--                value="csv/questions.csv"-->
+<!--        />-->
+<!--    </bean>-->
+<!--    <bean id="studentService"-->
+<!--          class="ru.otus.spring.Service.StudentServiceImpl">-->
+<!--        <constructor-arg-->
+<!--                type="ru.otus.spring.Service.QuestionService"-->
+<!--                ref="questionService"/>-->
+<!--    </bean>-->
+
 </beans>

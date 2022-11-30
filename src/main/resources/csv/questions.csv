@@ -1,0 +1,6 @@
+id,questionText,answers
+1,questionText1?,"1|answer11|false,2|answer12|true"
+2,questionText2?,"1|answer21|false,2|answer22|true"
+3,questionText3?,"1|answer31|true,2|answer32|false"
+4,questionText4?,"1|answer41|false,2|answer42|true"
+5,questionText5?,"1|answer51|true,2|answer52|false"
