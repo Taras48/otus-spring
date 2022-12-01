@@ -3,11 +3,13 @@ package ru.otus.spring.Service
 import org.springframework.stereotype.Service
 import ru.otus.spring.Dto.Student
 import ru.otus.spring.Dto.TestResult
+import ru.otus.spring.Utils.IOUtils
 
 
 @Service
 class StudentServiceImpl(
     private val questionService: QuestionService,
+    private val ioUtils: IOUtils,
 ) : StudentService {
     override fun getStudentWithTestResults(): Student {
         val student = getStudent()
@@ -15,15 +17,17 @@ class StudentServiceImpl(
         questionService.getQuestionsFromCsv()
             .map {
                 val answers = it.answers
-                println(
+                ioUtils.printInCons(
                     """
                   Выберите вариант ответа на вопрос на вопрос:
                         ${it.questionText}
                   Варианты ответа:                      
                 """.trimIndent()
                 )
-                answers.map { println("${it.id}) ${it.answerText}") }
-                val studentAnswer = readLine()?.toLong()
+
+                answers.map { ioUtils.printInCons("${it.id}) ${it.answerText}") }
+
+                val studentAnswer = ioUtils.readFromCons()?.toLong()
                 val result = answers.find { it.id == studentAnswer }?.isCorrect ?: false
 
                 student.testResults.add(
@@ -38,13 +42,13 @@ class StudentServiceImpl(
         return student
     }
 
-    private fun getStudent(): Student {
-        println("Введите имя и фамилию: ")
-        val nameAndSurname = readLine()?.split(" ")
+    override fun getStudent(): Student {
+        ioUtils.printInCons("Введите имя и фамилию: ")
+        val (name, surname) = ioUtils.readFromCons()!!.split(" ")
 
         return Student(
-            name = nameAndSurname?.get(0) ?: "",
-            surname = nameAndSurname?.get(1) ?: ""
+            name = name,
+            surname = surname
         )
     }
 }

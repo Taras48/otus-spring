@@ -41,12 +41,60 @@ class QuestionServiceTest {
                 "questionText2",
                 listOf(
                     Answer(
-                        3,
+                        1,
+                        "answer21",
+                        true
+                    ),
+                    Answer(
+                        2,
+                        "answer22",
+                        false
+                    )
+                )
+            ),
+            Question(
+                3,
+                "questionText2",
+                listOf(
+                    Answer(
+                        1,
+                        "answer21",
+                        true
+                    ),
+                    Answer(
+                        2,
+                        "answer22",
+                        false
+                    )
+                )
+            ),
+            Question(
+                4,
+                "questionText2",
+                listOf(
+                    Answer(
+                        1,
+                        "answer21",
+                        true
+                    ),
+                    Answer(
+                        2,
+                        "answer22",
+                        false
+                    )
+                )
+            ),
+            Question(
+                5,
+                "questionText2",
+                listOf(
+                    Answer(
+                        1,
                         "answer21",
                         false
                     ),
                     Answer(
-                        4,
+                        2,
                         "answer22",
                         true
                     )
