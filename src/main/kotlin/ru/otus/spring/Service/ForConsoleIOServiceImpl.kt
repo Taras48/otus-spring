@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service
 import ru.otus.spring.Dto.Student
 
 @Service
-class forConsoleIOServicempl : IOService {
+class ForConsoleIOServiceImpl: IOService {
     override fun readFromCons() = readLine()
 
     override fun printInCons(string: String) = println(string)
