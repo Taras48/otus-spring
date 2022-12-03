@@ -18,4 +18,10 @@ interface StudentService {
      * @return  студент с заполнеными только именем и фамилией
      */
     fun getStudent(): Student
+
+
+    /**
+     * Выводит студента после теста
+     */
+    fun printStudentAfterTesting()
 }

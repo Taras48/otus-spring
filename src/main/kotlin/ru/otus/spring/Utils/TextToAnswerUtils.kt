@@ -3,7 +3,7 @@ package ru.otus.spring.Utils
 import com.opencsv.bean.AbstractCsvConverter
 import ru.otus.spring.Dto.Answer
 
-class TextToAnswer : AbstractCsvConverter() {
+class TextToAnswerUtils : AbstractCsvConverter() {
     override fun convertToRead(value: String): Answer {
         val splitString = value.split("|")
         return Answer(

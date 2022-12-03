@@ -2,6 +2,7 @@ package ru.otus.spring.QuestionTest
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.springframework.context.annotation.PropertySource
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
 import ru.otus.spring.Dto.Answer
@@ -9,6 +10,8 @@ import ru.otus.spring.Dto.Question
 import ru.otus.spring.Service.QuestionServiceImpl
 import kotlin.test.assertEquals
 
+
+@PropertySource("classpath:application.properties")
 class QuestionServiceTest {
     private val resource: Resource = ClassPathResource("questions.csv")
 
