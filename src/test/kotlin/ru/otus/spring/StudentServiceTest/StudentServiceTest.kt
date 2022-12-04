@@ -1,15 +1,14 @@
 package ru.otus.spring.StudentServiceTest
 
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.assertThrows
 import org.mockito.kotlin.*
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
 import ru.otus.spring.Dto.Student
 import ru.otus.spring.Dto.TestResult
-import ru.otus.spring.Service.forConsoleIOServicempl
-import ru.otus.spring.Service.IOService
-import ru.otus.spring.Service.QuestionServiceImpl
-import ru.otus.spring.Service.StudentServiceImpl
+import ru.otus.spring.Service.*
+import ru.otus.spring.exceptions.BadDataInException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -17,7 +16,7 @@ import kotlin.test.assertEquals
 class StudentServiceTest {
     private val resource: Resource = ClassPathResource("questions.csv")
     private val questionService = QuestionServiceImpl(resource)
-    private val forConsoleIOService = mock<forConsoleIOServicempl>()
+    private val forConsoleIOService = mock<ForConsoleIOServiceImpl>()
     val service = StudentServiceImpl(questionService, forConsoleIOService)
 
 
@@ -36,6 +35,32 @@ class StudentServiceTest {
             check = false
         )
         assertEquals(expected, student)
+    }
+
+    @DisplayName("Получение студента. Ошибка ввода имени или фамилии")
+    @Test
+    fun getStudentBadNameInFail() {
+        whenever(forConsoleIOService.readFromCons())
+            .thenReturn("name")
+
+        val exception = assertThrows<BadDataInException> {
+            service.getStudent()
+        }
+
+        assertEquals("Ошибка ввода имени или фамилии.", exception.message)
+    }
+
+    @DisplayName("Получение студента. Введена пустая строка")
+    @Test
+    fun getStudentEmptyInFail() {
+        whenever(forConsoleIOService.readFromCons())
+            .thenReturn(null)
+
+        val exception = assertThrows<BadDataInException> {
+            service.getStudent()
+        }
+
+        assertEquals("Введена пустая строка", exception.message)
     }
 
     @DisplayName("Получение студента после теста")
