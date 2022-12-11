@@ -1,8 +1,10 @@
 package ru.otus.spring.Service
 
+import org.springframework.context.MessageSource
 import org.springframework.stereotype.Service
 import ru.otus.spring.Dto.Student
 import ru.otus.spring.Dto.TestResult
+import ru.otus.spring.config.ApplicationProps
 import ru.otus.spring.exceptions.BadDataInException
 
 
@@ -10,6 +12,8 @@ import ru.otus.spring.exceptions.BadDataInException
 class StudentServiceImpl(
     private val questionService: QuestionService,
     private val forConsoleIOService: IOService,
+    private val messageSource: MessageSource,
+    private val props: ApplicationProps
 ) : StudentService {
 
     override fun getStudentWithTestResults(): Student {
@@ -20,9 +24,9 @@ class StudentServiceImpl(
                 val answers = it.answers
                 forConsoleIOService.printInCons(
                     """
-                  Выберите вариант ответа на вопрос на вопрос:
+                        ${messageSource.getMessage("answerToQuestion", arrayOf(), props.locale)}                         
                         ${it.questionText}
-                  Варианты ответа:                      
+                        ${messageSource.getMessage("answerOptions", arrayOf(), props.locale)}             
                 """.trimIndent()
                 )
 
@@ -46,7 +50,7 @@ class StudentServiceImpl(
     }
 
     override fun getStudent(): Student {
-        forConsoleIOService.printInCons("Введите имя и фамилию: ")
+        forConsoleIOService.printInCons(messageSource.getMessage("firstAndLastName", arrayOf(), props.locale) )
 
         val (name, surname) =
             forConsoleIOService.readFromCons()?.let {

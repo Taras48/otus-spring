@@ -8,14 +8,19 @@ import org.springframework.core.io.Resource
 import ru.otus.spring.Dto.Answer
 import ru.otus.spring.Dto.Question
 import ru.otus.spring.Service.QuestionServiceImpl
+import ru.otus.spring.config.ApplicationProps
+import java.util.*
 import kotlin.test.assertEquals
 
 
 @PropertySource("classpath:application.properties")
 class QuestionServiceTest {
-    private val resource: Resource = ClassPathResource("questions.csv")
+    private val props = ApplicationProps(
+        questionsCsv = ClassPathResource("questions.csv"),
+        Locale("ru_Ru")
+    )
 
-    private val service = QuestionServiceImpl(resource)
+    private val service = QuestionServiceImpl(props)
 
     @DisplayName("Получение вопросов с ответами из csv")
     @Test

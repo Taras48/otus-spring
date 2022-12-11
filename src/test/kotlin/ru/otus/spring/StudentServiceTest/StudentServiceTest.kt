@@ -3,21 +3,28 @@ package ru.otus.spring.StudentServiceTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.assertThrows
 import org.mockito.kotlin.*
+import org.springframework.context.MessageSource
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
 import ru.otus.spring.Dto.Student
 import ru.otus.spring.Dto.TestResult
 import ru.otus.spring.Service.*
+import ru.otus.spring.config.ApplicationProps
 import ru.otus.spring.exceptions.BadDataInException
+import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
 class StudentServiceTest {
-    private val resource: Resource = ClassPathResource("questions.csv")
-    private val questionService = QuestionServiceImpl(resource)
+    private val props = ApplicationProps(
+        questionsCsv = ClassPathResource("questions.csv"),
+        Locale("ru_Ru")
+    )
+    private val questionService = QuestionServiceImpl(props)
     private val forConsoleIOService = mock<ForConsoleIOServiceImpl>()
-    val service = StudentServiceImpl(questionService, forConsoleIOService)
+    private val messageSource = mock<MessageSource>()
+    val service = StudentServiceImpl(questionService, forConsoleIOService, messageSource, props)
 
 
     @DisplayName("Получение студента")
