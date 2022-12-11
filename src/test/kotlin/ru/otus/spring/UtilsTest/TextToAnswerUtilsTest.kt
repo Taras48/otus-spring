@@ -3,11 +3,11 @@ package ru.otus.spring.UtilsTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import ru.otus.spring.Dto.Answer
-import ru.otus.spring.Utils.TextToAnswer
+import ru.otus.spring.Utils.TextToAnswerUtils
 import kotlin.test.assertEquals
 
-class TextToAnswerTest {
-    val converter = TextToAnswer()
+class TextToAnswerUtilsTest {
+    val converter = TextToAnswerUtils()
 
     @DisplayName("Парсинг строки в ответ")
     @Test
