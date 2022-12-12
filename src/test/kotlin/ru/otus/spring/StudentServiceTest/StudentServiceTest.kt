@@ -3,6 +3,7 @@ package ru.otus.spring.StudentServiceTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.assertThrows
 import org.mockito.kotlin.*
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.MessageSource
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
@@ -30,6 +31,9 @@ class StudentServiceTest {
     @DisplayName("Получение студента")
     @Test
     fun getStudent() {
+        whenever(messageSource.getMessage(any(),any(),any()))
+            .thenReturn("")
+
         whenever(forConsoleIOService.readFromCons())
             .thenReturn("name surname")
 
@@ -47,6 +51,8 @@ class StudentServiceTest {
     @DisplayName("Получение студента. Ошибка ввода имени или фамилии")
     @Test
     fun getStudentBadNameInFail() {
+        whenever(messageSource.getMessage(any(),any(),any()))
+            .thenReturn("")
         whenever(forConsoleIOService.readFromCons())
             .thenReturn("name")
 
@@ -60,6 +66,8 @@ class StudentServiceTest {
     @DisplayName("Получение студента. Введена пустая строка")
     @Test
     fun getStudentEmptyInFail() {
+        whenever(messageSource.getMessage(any(),any(),any()))
+            .thenReturn("")
         whenever(forConsoleIOService.readFromCons())
             .thenReturn(null)
 
@@ -73,6 +81,8 @@ class StudentServiceTest {
     @DisplayName("Получение студента после теста")
     @Test
     fun getStudentWithTestResultsTest() {
+        whenever(messageSource.getMessage(any(),any(),any()))
+            .thenReturn("")
         whenever(forConsoleIOService.readFromCons())
             .doReturn("name surname", "1", "1", "1", "1", "1")
 
@@ -99,6 +109,8 @@ class StudentServiceTest {
     @DisplayName("Вывод студента после теста")
     @Test
     fun printStudentAfterTestingTest() {
+        whenever(messageSource.getMessage(any(),any(),any()))
+            .thenReturn("")
         whenever(forConsoleIOService.readFromCons())
             .doReturn("name surname", "1", "1", "1", "1", "1")
 

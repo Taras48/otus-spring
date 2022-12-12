@@ -13,7 +13,6 @@ import java.util.*
 import kotlin.test.assertEquals
 
 
-@PropertySource("classpath:application.properties")
 class QuestionServiceTest {
     private val props = ApplicationProps(
         questionsCsv = ClassPathResource("questions.csv"),

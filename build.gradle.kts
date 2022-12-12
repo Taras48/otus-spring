@@ -36,7 +36,9 @@ dependencies {
     //Test
     testImplementation(kotlin("test"))
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
-
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+    }
 }
 
 tasks.test {
