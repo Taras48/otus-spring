@@ -1,22 +1,19 @@
 package ru.otus.spring.Service
 
 import com.opencsv.bean.CsvToBeanBuilder
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.annotation.PropertySource
-import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
 import ru.otus.spring.Dto.Question
+import ru.otus.spring.config.ApplicationProps
 import java.io.FileReader
 
 
 @Service
-@PropertySource("classpath:application.properties")
 class QuestionServiceImpl(
-    @Value("\${questions.csv}") private val resource: Resource
+    private val props: ApplicationProps
 ) : QuestionService {
 
     override fun getQuestionsFromCsv() =
-        CsvToBeanBuilder<Question>(FileReader(resource.file))
+        CsvToBeanBuilder<Question>(FileReader(props.questionsCsv.file))
             .withType(Question::class.java)
             .build()
             .parse()
