@@ -21,8 +21,6 @@ class AppCommands(
 ) {
     private var captcha = false
 
-
-    //    @ShellMethodAvailability(value = ["isPublishEventCommandAvailable"])
     @ShellMethod(value = "Login", key = ["l", "login"])
     fun login(): String {
         val randomNumb = List(2) { Random.nextInt(0, 100) }
